@@ -40,3 +40,7 @@ npx hardhat run --network moonbase scripts/deploy-uniswap.js
 ```
 
 **Note: the interface works on Moonbase Alpha with the contracts address baked in the SDK. To make sure that the interface works with your deployment you need to modify both the Interface and SDK repos**
+
+npx hardhat verify --network buildbear 0x35e400566C8370AFC2e4A941574CCe27Bb0e702a
+
+npx hardhat run scripts/deploy.js --network buildbear
