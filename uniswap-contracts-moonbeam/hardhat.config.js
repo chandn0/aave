@@ -16,7 +16,7 @@ module.exports = {
   networks: {
     hardhat: {},
     buildbear: {
-      url: "https://rpc.dev.buildbear.io/Commercial_Jar_Jar_Binks_ec77d57e",
+      url: "https://rpc.dev.buildbear.io/Awful_Owen_Lars_9745de07",
       accounts: ["5849c78835ad2825b86fd1537bfd6ff9414a40f45598760234e42e05eba1c654"],
       // url: "https://rpc.dev.buildbear.io/Naughty_Ratts_Tyerel_abcc8bba",
     },
@@ -45,18 +45,19 @@ module.exports = {
       },
     ],
   },
+
   etherscan: {
     apiKey: {
-      buildbear: "test1",
+      buildbear: "5ded353f2a028fdb93ee",
     },
     customChains: [
       {
         network: "buildbear",
-        chainId: 8363,
+        chainId: 8428,
         urls: {
           apiURL:
-            "https://rpc.dev.buildbear.io/verify/etherscan/Commercial_Jar_Jar_Binks_ec77d57e",
-          browserURL: "https://explorer.dev.buildbear.io/Commercial_Jar_Jar_Binks_ec77d57e",
+            "https://rpc.dev.buildbear.io/verify/etherscan/Awful_Owen_Lars_9745de07",
+          browserURL: "https://explorer.dev.buildbear.io/Awful_Owen_Lars_9745de07",
         },
       },
     ],
@@ -67,6 +68,6 @@ module.exports = {
     artifacts: './artifacts',
   },
   mocha: {
-    timeout: 20000,
+    timeout: 20000000000,
   },
 };

@@ -26,7 +26,16 @@ async function deploy() {
    await run(`verify:verify`, {
       address: factoryInstance.address, constructorArguments: [deployerAddress],
    });
+   //Deploy Multicall (needed for Interface)
+   const multicall = await ethers.getContractFactory('Multicall');
+   const multicallInstance = await multicall.deploy();
+   await multicallInstance.deployed();
 
+   console.log(`Multicall deployed to : ${multicallInstance.address}`);
+
+   await run(`verify:verify`, {
+      address: multicallInstance.address,
+   });
    //Deploy Router passing Factory Address and WETH Address
    const router = await ethers.getContractFactory('UniswapV2Router02');
    const routerInstance = await router.deploy(
@@ -39,19 +48,10 @@ async function deploy() {
 
    await run(`verify:verify`, {
       address: routerInstance.address, constructorArguments: [factoryInstance.address,
-      wethInstance.address]
+      wethInstance.address],
    });
 
-   //Deploy Multicall (needed for Interface)
-   const multicall = await ethers.getContractFactory('Multicall');
-   const multicallInstance = await multicall.deploy();
-   await multicallInstance.deployed();
 
-   console.log(`Multicall deployed to : ${multicallInstance.address}`);
-
-   await run(`verify:verify`, {
-      address: multicallInstance.address,
-   });
 
 }
 
