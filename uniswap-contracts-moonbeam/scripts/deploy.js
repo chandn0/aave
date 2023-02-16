@@ -40,7 +40,7 @@ async function deploy() {
     const router = await ethers.getContractFactory('UniswapV2Router02');
     const routerInstance = await router.deploy(
         factoryInstance.address,
-        wethInstance.address
+        wethInstance.address,
     );
     await routerInstance.deployed();
 

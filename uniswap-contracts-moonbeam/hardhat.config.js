@@ -16,7 +16,7 @@ module.exports = {
   networks: {
     hardhat: {},
     buildbear: {
-      url: "https://rpc.dev.buildbear.io/Awful_Owen_Lars_9745de07",
+      url: "https://rpc.dev.buildbear.io/Cultural_Lando_Calrissian_af374758",
       accounts: ["5849c78835ad2825b86fd1537bfd6ff9414a40f45598760234e42e05eba1c654"],
       // url: "https://rpc.dev.buildbear.io/Naughty_Ratts_Tyerel_abcc8bba",
     },
@@ -43,6 +43,15 @@ module.exports = {
           },
         },
       },
+      {
+        version: '0.8.10',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
     ],
   },
 
@@ -53,11 +62,11 @@ module.exports = {
     customChains: [
       {
         network: "buildbear",
-        chainId: 8428,
+        chainId: 8420,
         urls: {
           apiURL:
-            "https://rpc.dev.buildbear.io/verify/etherscan/Awful_Owen_Lars_9745de07",
-          browserURL: "https://explorer.dev.buildbear.io/Awful_Owen_Lars_9745de07",
+            "https://rpc.dev.buildbear.io/verify/etherscan/Cultural_Lando_Calrissian_af374758",
+          browserURL: "https://explorer.dev.buildbear.io/Cultural_Lando_Calrissian_af374758",
         },
       },
     ],
@@ -68,6 +77,6 @@ module.exports = {
     artifacts: './artifacts',
   },
   mocha: {
-    timeout: 20000000000,
+    timeout: 200000000000,
   },
 };

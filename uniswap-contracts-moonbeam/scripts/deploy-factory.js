@@ -37,18 +37,22 @@ async function deploy() {
       address: multicallInstance.address,
    });
    //Deploy Router passing Factory Address and WETH Address
-   const router = await ethers.getContractFactory('UniswapV2Router02');
+   const router = await ethers.getContractFactory('UniswapV2Router01');
    const routerInstance = await router.deploy(
       factoryInstance.address,
-      wethInstance.address
+      wethInstance.address,
    );
    await routerInstance.deployed();
 
    console.log(`Router V02 deployed to :  ${routerInstance.address}`);
 
    await run(`verify:verify`, {
-      address: routerInstance.address, constructorArguments: [factoryInstance.address,
-      wethInstance.address],
+      address: routerInstance.address,
+      constructorArguments:
+         [
+            factoryInstance.address,
+            wethInstance.address,
+         ],
    });
 
 
