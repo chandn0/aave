@@ -91,6 +91,27 @@ async function deploy() {
     });
 
 
+    const PoolConfigurator = await ethers.getContractFactory('PoolConfigurator'
+        , {
+            libraries: {
+                ConfiguratorLogic: ConfiguratorLogicInstance.address,
+            },
+        }
+    );
+    const PoolConfiguratorInstance = await PoolConfigurator.deploy(
+    );
+    await PoolConfiguratorInstance.deployed();
+
+    console.log(`PoolConfigurator V02 deployed to :  ${PoolConfiguratorInstance.address}`);
+
+    await run(`verify:verify`, {
+        address: PoolConfiguratorInstance.address,
+        libraries: {
+            ConfiguratorLogic: ConfiguratorLogicInstance.address,
+        }
+
+    });
+
     const Pool = await ethers.getContractFactory('Pool', {
         libraries: {
             BorrowLogic: BorrowLogicInstance.address,
@@ -115,24 +136,18 @@ async function deploy() {
             [
                 poolAddressesproviderInstance.address,
             ],
-    });
-
-    const PoolConfigurator = await ethers.getContractFactory('PoolConfigurator'
-        , {
-            libraries: {
-                ConfiguratorLogic: ConfiguratorLogicInstance.address,
-            },
+        libraries: {
+            BorrowLogic: BorrowLogicInstance.address,
+            BridgeLogic: BridgeLogicInstance.address,
+            EModeLogic: EModeLogicInstance.address,
+            FlashLoanLogic: FlashLoanLogicInstance.address,
+            LiquidationLogic: LiquidationLogicInstance.address,
+            PoolLogic: PoolLogicInstance.address,
+            SupplyLogic: SupplyLogicInstance.address,
         }
-    );
-    const PoolConfiguratorInstance = await PoolConfigurator.deploy(
-    );
-    await PoolConfiguratorInstance.deployed();
-
-    console.log(`PoolConfigurator V02 deployed to :  ${PoolConfiguratorInstance.address}`);
-
-    await run(`verify:verify`, {
-        address: PoolConfiguratorInstance.address,
     });
+
+
 
     const ACLManager = await ethers.getContractFactory('ACLManager');
     const ACLManagerInstance = await ACLManager.deploy(poolAddressesproviderInstance.address);
